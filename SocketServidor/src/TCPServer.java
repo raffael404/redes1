@@ -3,6 +3,11 @@ import java.net.*;
 
 public class TCPServer {
 
+	/**
+	 * Comentario Rony
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 		String clientSentence, capitalizedSentence;
 		ServerSocket welcomeSocket = new ServerSocket(6789);
