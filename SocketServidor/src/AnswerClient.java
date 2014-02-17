@@ -13,17 +13,14 @@ public class AnswerClient implements Runnable{
 	private List<DataOutputStream> toClient;
 	//private Scanner fromClient;
 	BufferedReader fromClient;
-	private InetAddress IP;
+	private String IP;
 	
-	public AnswerClient (Socket socket, List<Socket> listaSockets) throws IOException{
+	public AnswerClient (Socket socket, List<DataOutputStream> toClients) throws IOException{
 		//fromClient = new Scanner(socket.getInputStream());
 		fromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 //		toClient = new DataOutputStream(socket.getOutputStream());
-		toClient = new ArrayList<DataOutputStream>();
-		for (int i = 0; i < listaSockets.size(); i++) {
-			toClient.add(new DataOutputStream(listaSockets.get(i).getOutputStream()));
-		}
-		IP = socket.getInetAddress();
+		toClient = toClients;
+		IP = socket.getInetAddress().getHostAddress();
 	}
 	
 	public void run() {
