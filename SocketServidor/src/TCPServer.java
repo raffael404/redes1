@@ -1,26 +1,15 @@
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 
 public class TCPServer {
-
-	/**
-	 * Comentario Rony
-	 * @param args
-	 * @throws Exception
-	 * Alteração no github
-	 * Alterei de novo
-	 * Alteração Rafael
-	 */
-	public static void main(String[] args) throws Exception {
-		String clientSentence, capitalizedSentence;
-		ServerSocket welcomeSocket = new ServerSocket(6789);
+	public static void main(String[] args) throws IOException{
+		ServerSocket serverSocket = new ServerSocket(5000);
 		while(true){
-			Socket connectionSocket = welcomeSocket.accept();
-			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-			DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
-			clientSentence = inFromClient.readLine();
-			capitalizedSentence = clientSentence.toUpperCase() + '\n';
-			outToClient.writeBytes(capitalizedSentence);
+			Socket socket = serverSocket.accept();
+			new Thread(new AnswerClient(socket)).start();
 		}
 	}
+	
 }
