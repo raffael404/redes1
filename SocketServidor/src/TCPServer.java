@@ -8,6 +8,7 @@ public class TCPServer {
 	 * @param args
 	 * @throws Exception
 	 * Alteração no github
+	 * Alterei de novo
 	 */
 	public static void main(String[] args) throws Exception {
 		String clientSentence, capitalizedSentence;
