@@ -16,7 +16,7 @@ public class ReceiveMessage implements Runnable{
 	public void run() {
 		try {
 			while((sentence = inFromServer.readLine())!=null){
-				System.out.println("FROM SERVER: " + sentence);
+				System.out.println(sentence);
 			}
 			
 		} catch (IOException e) {
