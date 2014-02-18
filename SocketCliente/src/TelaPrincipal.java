@@ -15,10 +15,14 @@ import javax.swing.AbstractAction;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
 import javax.swing.Action;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 public class TelaPrincipal {
@@ -65,6 +69,7 @@ public class TelaPrincipal {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		
 		textArea = new JTextArea();
 		textArea.setEditable(false);
 		textArea.setBounds(0, 0, 434, 210);
@@ -92,9 +97,28 @@ public class TelaPrincipal {
 		});
 		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(e.getKeyChar() == '\n'){
+					String mensagem = textField.getText();
+					textField.setText(null);
+					try {
+						tcpcliente.enviaMensagem(mensagem);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+			
+			
+		});
 		textField.setBounds(0, 214, 342, 36);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
+		
+		
 		
 		
 	}
