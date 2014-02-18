@@ -16,8 +16,7 @@ public class TCPServer {
 		while(true){
 			Socket socket = serverSocket.accept();
 			toClients.add(new DataOutputStream(socket.getOutputStream()));
-			new Thread(new AnswerClient(socket,toClients)).start();
-			
+			new Thread(new AnswerClient(socket,toClients)).start();	
 		}
 	}
 	

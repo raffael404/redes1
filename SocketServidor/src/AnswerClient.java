@@ -28,7 +28,7 @@ public class AnswerClient implements Runnable{
 				System.out.println("From " + IP + ": " + text);
 				try {
 					for (DataOutputStream toCliente : toClient) {
-						toCliente.writeBytes("FROM "+ IP + ":" + text.toUpperCase() + '\n');
+						toCliente.writeBytes("FROM "+ IP + ": " + text.toUpperCase() + '\n');
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
