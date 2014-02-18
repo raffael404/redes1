@@ -19,7 +19,7 @@ public class AnswerClient implements Runnable{
 		toClient = toClients;
 		IP = socket.getInetAddress().getHostAddress();
 		DataOutputStream thisClient = new DataOutputStream(socket.getOutputStream());
-		thisClient.writeBytes("Digite seu nome: ");
+		thisClient.writeBytes("Digite seu nome: \n");
 		this.name = fromClient.readLine();
 	}
 	
