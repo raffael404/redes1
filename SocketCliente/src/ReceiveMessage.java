@@ -20,7 +20,7 @@ public class ReceiveMessage implements Runnable{
 	public void run() {
 		try {
 			while((sentence = inFromServer.readLine())!=null){
-				textArea.setText(textArea.getText()+sentence);
+				textArea.setText(textArea.getText()+"\n"+sentence);
 			}
 			
 		} catch (IOException e) {
