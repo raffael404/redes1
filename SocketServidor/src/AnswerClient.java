@@ -18,6 +18,8 @@ public class AnswerClient implements Runnable{
 //		toClient = new DataOutputStream(socket.getOutputStream());
 		toClient = toClients;
 		IP = socket.getInetAddress().getHostAddress();
+		DataOutputStream thisClient = new DataOutputStream(socket.getOutputStream());
+		thisClient.writeBytes("Digite seu nome: ");
 		this.name = fromClient.readLine();
 	}
 	
@@ -25,6 +27,7 @@ public class AnswerClient implements Runnable{
 		String text;
 		
 		try {
+			
 			while((text = fromClient.readLine()) != null){
 				System.out.println("From " + IP + ": " + text);
 				try {
