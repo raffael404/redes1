@@ -24,6 +24,8 @@ import javax.swing.Action;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.DropMode;
+import javax.swing.JScrollPane;
+import javax.swing.JScrollBar;
 
 
 public class TelaPrincipal {
@@ -70,15 +72,6 @@ public class TelaPrincipal {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		
-		textArea = new JTextArea();
-		textArea.setDropMode(DropMode.ON);
-		textArea.setEditable(false);
-		textArea.setBounds(0, 0, 434, 210);
-		frame.getContentPane().add(textArea);
-		
-		tcpcliente = new TCPClient(textArea);
-		
 		JButton btnEnviar = new JButton("Enviar");
 		btnEnviar.setBounds(352, 214, 72, 36);
 		frame.getContentPane().add(btnEnviar);
@@ -120,9 +113,20 @@ public class TelaPrincipal {
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 414, 192);
+		frame.getContentPane().add(scrollPane);
+		
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		textArea.setLineWrap(true);
+		textArea.setEditable(false);
+		
+		tcpcliente = new TCPClient(textArea);
+		
 		
 		
 		
 	}
-
 }
