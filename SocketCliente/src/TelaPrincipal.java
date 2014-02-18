@@ -23,6 +23,7 @@ import javax.swing.Action;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.DropMode;
 
 
 public class TelaPrincipal {
@@ -71,6 +72,7 @@ public class TelaPrincipal {
 		
 		
 		textArea = new JTextArea();
+		textArea.setDropMode(DropMode.ON);
 		textArea.setEditable(false);
 		textArea.setBounds(0, 0, 434, 210);
 		frame.getContentPane().add(textArea);
