@@ -10,7 +10,7 @@ public class AnswerClient implements Runnable{
 	private List<DataOutputStream> toClient;
 	//private Scanner fromClient;
 	BufferedReader fromClient;
-	private String IP;
+	private String IP, name;
 	
 	public AnswerClient (Socket socket, List<DataOutputStream> toClients) throws IOException{
 		//fromClient = new Scanner(socket.getInputStream());
@@ -18,6 +18,7 @@ public class AnswerClient implements Runnable{
 //		toClient = new DataOutputStream(socket.getOutputStream());
 		toClient = toClients;
 		IP = socket.getInetAddress().getHostAddress();
+		this.name = fromClient.readLine();
 	}
 	
 	public void run() {
@@ -28,7 +29,7 @@ public class AnswerClient implements Runnable{
 				System.out.println("From " + IP + ": " + text);
 				try {
 					for (DataOutputStream toCliente : toClient) {
-						toCliente.writeBytes("FROM "+ IP + ": " + text.toUpperCase() + '\n');
+						toCliente.writeBytes("FROM "+ name + ": " + text.toUpperCase() + '\n');
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
