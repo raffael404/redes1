@@ -59,11 +59,18 @@ public class TelaPrincipal {
 	 * @throws UnknownHostException 
 	 */
 	private void initialize() throws UnknownHostException, IOException {
-		tcpcliente = new TCPClient();
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setBounds(0, 0, 434, 210);
+		frame.getContentPane().add(textArea);
+		
+		tcpcliente = new TCPClient(textArea);
 		
 		JButton btnEnviar = new JButton("Enviar");
 		btnEnviar.setBounds(352, 214, 72, 36);
@@ -89,10 +96,7 @@ public class TelaPrincipal {
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setBounds(0, 0, 434, 210);
-		frame.getContentPane().add(textArea);
+		
 	}
 
 }
