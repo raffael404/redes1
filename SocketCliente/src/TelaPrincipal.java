@@ -109,7 +109,7 @@ public class TelaPrincipal {
 			
 			
 		});
-		textField.setBounds(10, 214, 332, 36);
+		textField.setBounds(0, 214, 342, 36);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
