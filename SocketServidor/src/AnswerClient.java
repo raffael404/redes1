@@ -21,6 +21,9 @@ public class AnswerClient implements Runnable{
 		DataOutputStream thisClient = new DataOutputStream(socket.getOutputStream());
 		thisClient.writeBytes("Digite seu nome: \n");
 		this.name = fromClient.readLine();
+		for (DataOutputStream toCliente : toClient) {
+			toCliente.writeBytes(name + " se conectou." + '\n');
+		}
 	}
 	
 	public void run() {
@@ -32,7 +35,7 @@ public class AnswerClient implements Runnable{
 				System.out.println("From " + IP + ": " + text);
 				try {
 					for (DataOutputStream toCliente : toClient) {
-						toCliente.writeBytes("FROM "+ name + ": " + text.toUpperCase() + '\n');
+						toCliente.writeBytes(name + ": " + text.toUpperCase() + '\n');
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
