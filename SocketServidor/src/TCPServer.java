@@ -6,17 +6,24 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JTextArea;
+
 
 public class TCPServer {
+	JTextArea textArea;
 	
-	public static void main(String[] args) throws IOException{
+	public TCPServer(JTextArea textArea) {
+		this.textArea = textArea;
+	}
+	
+	public void run() throws IOException{
 		List<DataOutputStream> toClients = new ArrayList<DataOutputStream>();
 		ServerSocket serverSocket = new ServerSocket(5000);
 		
 		while(true){
 			Socket socket = serverSocket.accept();
 			toClients.add(new DataOutputStream(socket.getOutputStream()));
-			new Thread(new AnswerClient(socket,toClients)).start();	
+			new Thread(new AnswerClient(socket,toClients,textArea)).start();	
 		}
 	}
 	
