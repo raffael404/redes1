@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -8,7 +9,7 @@ import javax.swing.JTextArea;
 public class TelaServidor {
 
 	private JFrame frame;
-	private TCPServer tcpServer;
+	//private TCPServer tcpServer;
 
 	/**
 	 * Launch the application.
@@ -19,7 +20,7 @@ public class TelaServidor {
 				try {
 					TelaServidor window = new TelaServidor();
 					window.frame.setVisible(true);
-					window.tcpServer.run();
+					//window.tcpServer.run();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -29,15 +30,17 @@ public class TelaServidor {
 
 	/**
 	 * Create the application.
+	 * @throws IOException 
 	 */
-	public TelaServidor() {
+	public TelaServidor() throws IOException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws IOException 
 	 */
-	private void initialize() {
+	private void initialize() throws IOException {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,6 +54,7 @@ public class TelaServidor {
 		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 		
-		tcpServer = new TCPServer(textArea);
+		new Thread(new TCPServer(textArea)).start();
+		//tcpServer = new TCPServer(textArea);
 	}
 }
