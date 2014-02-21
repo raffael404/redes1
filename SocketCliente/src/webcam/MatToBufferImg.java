@@ -1,6 +1,8 @@
 package webcam;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
@@ -9,13 +11,16 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.highgui.Highgui;
 
+import chat.TCPClient;
+
 
 public class MatToBufferImg {
 	Mat matriz;
 	MatOfByte mob;
 	String fileExten;
-	
-	public MatToBufferImg() {
+	private TCPClient tcpClient;
+	public MatToBufferImg(TCPClient tcpClient) {
+		this.tcpClient = tcpClient;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -30,9 +35,11 @@ public class MatToBufferImg {
 		this.mob = new MatOfByte();
 	}
 	
-	public BufferedImage getBufferedImage(){
+	public BufferedImage getBufferedImage() throws Exception{
 		Highgui.imencode(fileExten, matriz, mob);
 		byte[] byteArray = mob.toArray();
+		
+		tcpClient.getOutToServer().write(byteArray);
 		BufferedImage bufImage = null;
 		
 		try {

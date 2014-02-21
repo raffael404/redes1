@@ -29,10 +29,16 @@ import java.awt.event.KeyEvent;
 import javax.swing.DropMode;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
+
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
+
+import javax.swing.JPanel;
+
+import webcam.FacePanel;
+import webcam.WebCam;
 
 
 public class TelaPrincipal {
@@ -41,6 +47,7 @@ public class TelaPrincipal {
 	private JTextField textField;
 	private JTextArea textArea;
 	private TCPClient tcpcliente;
+	private WebCam webCam;
 
 	/**
 	 * Launch the application.
@@ -51,6 +58,7 @@ public class TelaPrincipal {
 				try {
 					TelaPrincipal window = new TelaPrincipal();
 					window.frame.setVisible(true);
+//					window.webCam.run();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -75,7 +83,7 @@ public class TelaPrincipal {
 	private void initialize() throws UnknownHostException, IOException {
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 724, 301);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -134,5 +142,12 @@ public class TelaPrincipal {
 		textArea.setEditable(false);
 		
 		tcpcliente = new TCPClient(textArea);
+		
+		
+		FacePanel facepanel = new FacePanel();
+		facepanel.setBounds(434, 11, 264, 239);
+		frame.getContentPane().add(facepanel);
+		
+		webCam = new WebCam(facepanel, tcpcliente);
 	}
 }

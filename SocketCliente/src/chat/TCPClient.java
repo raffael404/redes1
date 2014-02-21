@@ -16,5 +16,12 @@ public class TCPClient {
 	
 	public void enviaMensagem(String mensagem) throws Exception{
 		outToServer.writeBytes(mensagem + "\n");
+		
 	}
+	
+	public DataOutputStream getOutToServer() {
+		return outToServer;
+	}
+	
+	
 }

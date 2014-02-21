@@ -9,20 +9,30 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.highgui.VideoCapture;
 
+import chat.TCPClient;
+
 /**
  * 
  * @author Ronyerison
  *
  */
-public class Teste {
-	public static void main(String[] args) throws Exception {
-		JFrame frame = new JFrame("Capturar imagem webcam");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500, 500);
-		FacePanel facepanel = new FacePanel();
-		frame.setContentPane(facepanel);
+public class WebCam {
+	FacePanel facepanel;
+	TCPClient tcpCliente;
+	
+	public WebCam(FacePanel facePanel, TCPClient tcpCliente) {
+		this.facepanel = facePanel;
+		this.tcpCliente = tcpCliente;
+	}
+	
+	public void run() throws Exception {
+//		JFrame frame = new JFrame("Capturar imagem webcam");
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setSize(500, 500);
+//		FacePanel facepanel = new FacePanel();
+//		frame.setContentPane(facepanel);
 		
-		MatToBufferImg imageConverter = new MatToBufferImg();
+		MatToBufferImg imageConverter = new MatToBufferImg(tcpCliente);
 		
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		VideoCapture webcam = new VideoCapture(0);
@@ -32,7 +42,7 @@ public class Teste {
 			System.out.println("camera encontrada " + webcam.toString());
 		}
 		
-		frame.setVisible(true);
+//		frame.setVisible(true);
 		Mat webcam_image = new Mat();
 		
 		if( webcam.isOpened()){
