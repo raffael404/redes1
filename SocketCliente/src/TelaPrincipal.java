@@ -82,22 +82,6 @@ public class TelaPrincipal {
 		btnEnviar.setBounds(352, 214, 72, 36);
 		frame.getContentPane().add(btnEnviar);
 		
-		textField.setBounds(10, 214, 332, 36);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 414, 192);
-		frame.getContentPane().add(scrollPane);
-		
-		
-		textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
-		textArea.setLineWrap(true);
-		textArea.setEditable(false);
-		
-		tcpcliente = new TCPClient(textArea);
-		
 		btnEnviar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -134,7 +118,20 @@ public class TelaPrincipal {
 			
 		});
 		
+		textField.setBounds(10, 214, 332, 36);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 414, 192);
+		frame.getContentPane().add(scrollPane);
 		
 		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		textArea.setLineWrap(true);
+		textArea.setEditable(false);
+		
+		tcpcliente = new TCPClient(textArea);
 	}
 }
