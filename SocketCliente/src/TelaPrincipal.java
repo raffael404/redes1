@@ -1,4 +1,5 @@
 import java.awt.EventQueue;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -23,9 +24,14 @@ import javax.swing.Action;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 import javax.swing.DropMode;
 import javax.swing.JScrollPane;
 import javax.swing.JScrollBar;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 
 public class TelaPrincipal {
@@ -76,39 +82,6 @@ public class TelaPrincipal {
 		btnEnviar.setBounds(352, 214, 72, 36);
 		frame.getContentPane().add(btnEnviar);
 		
-		btnEnviar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String mensagem = textField.getText();
-				textField.setText(null);
-				try {
-					tcpcliente.enviaMensagem(mensagem);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if(e.getKeyChar() == '\n'){
-					String mensagem = textField.getText();
-					textField.setText(null);
-					try {
-						tcpcliente.enviaMensagem(mensagem);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-			}
-			
-			
-		});
 		textField.setBounds(10, 214, 332, 36);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
@@ -125,6 +98,41 @@ public class TelaPrincipal {
 		
 		tcpcliente = new TCPClient(textArea);
 		
+		btnEnviar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String mensagem = textField.getText();
+				textField.setText(null);
+				try {
+					tcpcliente.enviaMensagem(mensagem);
+//					scrollPane.getViewport().setViewPosition(new Point(0, scrollPane.getVerticalScrollBar().getMaximum()));
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(e.getKeyChar() == '\n'){
+					String mensagem = textField.getText();
+					textField.setText(null);
+					try {
+						tcpcliente.enviaMensagem(mensagem);
+//						scrollPane.getViewport().setViewPosition(new Point(0, scrollPane.getVerticalScrollBar().getMaximum()));
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+			
+			
+		});
 		
 		
 		
