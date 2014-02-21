@@ -1,3 +1,4 @@
+package chat;
 import java.awt.EventQueue;
 import java.awt.Point;
 
