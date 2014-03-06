@@ -1,41 +1,17 @@
 package chat;
 import java.awt.EventQueue;
-import java.awt.Point;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-
-import java.awt.BorderLayout;
-
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-
-import java.awt.Window.Type;
-
-import javax.swing.AbstractAction;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import javax.swing.Action;
-
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
-import javax.swing.DropMode;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JScrollBar;
-
-import java.awt.event.MouseWheelListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
-
-import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import webcam.FacePanel;
 import webcam.WebCam;
@@ -47,7 +23,7 @@ public class TelaPrincipal {
 	private JTextField textField;
 	private JTextArea textArea;
 	private TCPClient tcpcliente;
-	private WebCam webCam;
+//	private WebCam webCam;
 
 	/**
 	 * Launch the application.
@@ -141,13 +117,14 @@ public class TelaPrincipal {
 		textArea.setLineWrap(true);
 		textArea.setEditable(false);
 		
-		tcpcliente = new TCPClient(textArea);
+		
 		
 		
 		FacePanel facepanel = new FacePanel();
 		facepanel.setBounds(434, 11, 264, 239);
 		frame.getContentPane().add(facepanel);
 		
-		webCam = new WebCam(facepanel, tcpcliente);
+		tcpcliente = new TCPClient(textArea, facepanel);
+//		webCam = new WebCam(facepanel);
 	}
 }

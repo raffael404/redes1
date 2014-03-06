@@ -8,8 +8,12 @@ import javax.swing.JPanel;
 
 
 public class FacePanel extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3471425576067492747L;
 	private BufferedImage image;
-	int count = 0;
+	private int count = 0;
 	
 	public FacePanel() {
 		super();
@@ -26,7 +30,7 @@ public class FacePanel extends JPanel{
 			return;
 		}
 		
-		g.drawImage(this.image, 10, 10, this.image.getWidth(), this.image.getHeight(), null);
+		g.drawImage(this.image, 10, 10, this.getWidth(), this.getHeight(), null);
 		g.setFont(new Font("arial", 2, 20));
 		g.setColor(Color.WHITE);
 		g.drawString("Web Cam processing frame by frame [Frame: "+(count++)+ " ]", 50, 50);
